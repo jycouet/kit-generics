@@ -18,6 +18,10 @@
 <h2>Second</h2>
 <Form init={{ name: "JYC", age: 37 }}>
   <svelte:fragment slot="custom" let:initStore>
+    <!-- 
+          I would like `initStore` to be typed with 
+          Writable<init type> 
+    -->
     Custom
     <pre>{JSON.stringify(get(initStore))}</pre>
   </svelte:fragment>

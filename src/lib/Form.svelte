@@ -1,7 +1,7 @@
-<script lang="ts">
+<script lang="ts" generics="T extends Record<string, any>">
   import { writable } from "svelte/store";
 
-  export let init: any = {};
+  export let init: T = {};
 
   let list = Object.entries(init).map(([key, value]) => ({ key, value }));
 
