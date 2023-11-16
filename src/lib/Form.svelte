@@ -1,14 +1,22 @@
 <script lang="ts">
+  import { writable } from "svelte/store";
+
   export let init: any = {};
 
   let list = Object.entries(init).map(([key, value]) => ({ key, value }));
+
+  const initStore = writable(init);
 </script>
 
-{#each list as { key, value }, i}
-  <div>
-    <label>
-      <input bind:value />
-      {key}
-    </label>
-  </div>
-{/each}
+{#if $$slots.custom}
+  <slot name="custom" {initStore} />
+{:else}
+  {#each list as { key, value }, i}
+    <div>
+      <label>
+        {key}
+        <input bind:value />
+      </label>
+    </div>
+  {/each}
+{/if}
